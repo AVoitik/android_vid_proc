@@ -56,11 +56,10 @@ public class baseballImager {
         Log.d(TAG, "Grabbed Frame #: " + Integer.toString(counter));
         nextFrame = getNextFrame();
         //Do the differencing
-        //Mat diffImg = new Mat();
-        Mat diffImg;
+        Mat diffImg = new Mat();
         Mat matTwo = bitmapToGrayMat(nextFrame);
         Mat matOne = bitmapToGrayMat(backgroundFrame);
-        //displayMat(diffImg);
+
         Core.absdiff(matOne, matTwo, diffImg);
         displayMat(diffImg);
     }
