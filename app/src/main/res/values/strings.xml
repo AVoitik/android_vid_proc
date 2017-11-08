@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">testing</string>
+    <string name="beginButton">Begin</string>
+    <string name="scanButton">Scan For Baseball</string>
+</resources>
