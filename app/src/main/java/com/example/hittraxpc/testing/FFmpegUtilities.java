@@ -11,6 +11,7 @@ package com.example.hittraxpc.testing;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
@@ -78,7 +79,7 @@ public class FFmpegUtilities {
     //Post: Toast output to tell what the outcome of the execution was
     //      and a boolean return type
     //*****************************************************************************
-    protected boolean ffmpegCommand(FFmpegCommands ffobj, final Button btn) {
+    protected boolean ffmpegCommand(final FFmpegCommands ffobj, final Button btn, final ImageView iv) {
         //String selectCommand = "select=between'(n," + Integer.toString(VIDSTART_IN) + "," + Integer.toString(VIDEND_IN) + ")'";
 
         //Check if the command object file exists or not
@@ -109,7 +110,10 @@ public class FFmpegUtilities {
                 }
 
                 @Override
-                public void onFinish() {}
+                public void onFinish() {
+                    baseballImager bimg = new baseballImager(ffobj, iv);
+                    bimg.findBaseball();
+                }
             });
 
         } catch (FFmpegCommandAlreadyRunningException e) {

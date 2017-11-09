@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO: Programatically set these
     protected String VIDPATH_IN = Environment.getExternalStorageDirectory() + File.separator + "Video/";
-    protected String VIDNAME_IN = "V_20171106_143000.mp4";
+    protected String VIDNAME_IN = "TEST_VID_20171005_153548.mp4";
 
     //Load the openCV library
     static{System.loadLibrary("opencv_java3");}
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         ffmpeg = FFmpeg.getInstance(getBaseContext());
 
         myCommand = new FFmpegCommands(FFmpegType.GET_EVERY_FIFTH_FRAME, VIDNAME_IN, VIDPATH_IN);
-        bimg = new baseballImager(myCommand, iv);
+
 
         util = new FFmpegUtilities(ffmpeg, this);
         util.initializeFFmpegLibrary(beginButton);
@@ -69,17 +69,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //execute ffmpeg command;
-                if(!util.ffmpegCommand(myCommand, scanButton)){
+                if(!util.ffmpegCommand(myCommand, scanButton, iv)){
                     Toast.makeText(getBaseContext(), "Could not pull frames. File does not exist", Toast.LENGTH_LONG).show();
+                }else{
+
                 }
-            }
-        });
-
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                bimg.findBaseball();
             }
         });
     }
